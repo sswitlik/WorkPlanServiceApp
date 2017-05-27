@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.6
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkPlanServiceApp", "WorkPlanServiceApp\WorkPlanServiceApp.csproj", "{FCDF455F-072B-499E-951B-2F07D70A6C2C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebServer", "WebServer\WebServer.csproj", "{C2AE2D29-381E-4FC0-A885-C93DCCC8804D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FCDF455F-072B-499E-951B-2F07D70A6C2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCDF455F-072B-499E-951B-2F07D70A6C2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCDF455F-072B-499E-951B-2F07D70A6C2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCDF455F-072B-499E-951B-2F07D70A6C2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2AE2D29-381E-4FC0-A885-C93DCCC8804D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2AE2D29-381E-4FC0-A885-C93DCCC8804D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2AE2D29-381E-4FC0-A885-C93DCCC8804D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2AE2D29-381E-4FC0-A885-C93DCCC8804D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
