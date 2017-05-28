@@ -22,5 +22,12 @@ namespace WebServer
         {
             return "Hello World";
         }
+
+        [WebMethod]
+        public bool logIn(string username, string password)
+        {
+            //search for username and password in database
+            return true;
+        }
     }
 }
