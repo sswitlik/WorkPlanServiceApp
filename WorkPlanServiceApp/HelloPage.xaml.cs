@@ -16,16 +16,13 @@ using System.Windows.Shapes;
 namespace WorkPlanServiceApp
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Logika interakcji dla klasy HelloPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class HelloPage : Page
     {
-        public MainWindow()
+        public HelloPage()
         {
             InitializeComponent();
-            AppNavigation.Content = new UserPage();
         }
-
-       
     }
 }

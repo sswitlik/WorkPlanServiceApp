@@ -16,16 +16,13 @@ using System.Windows.Shapes;
 namespace WorkPlanServiceApp
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Logika interakcji dla klasy AvailibilityPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class AvailibilityPage : Page
     {
-        public MainWindow()
+        public AvailibilityPage()
         {
             InitializeComponent();
-            AppNavigation.Content = new UserPage();
         }
-
-       
     }
 }
