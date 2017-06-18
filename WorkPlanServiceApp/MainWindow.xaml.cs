@@ -23,7 +23,7 @@ namespace WorkPlanServiceApp
         public MainWindow()
         {
             InitializeComponent();
-            AppNavigation.Content = new UserPage();
+            AppNavigation.Content = new LoginPage();
         }
 
        

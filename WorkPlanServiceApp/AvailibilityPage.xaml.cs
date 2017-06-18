@@ -20,9 +20,47 @@ namespace WorkPlanServiceApp
     /// </summary>
     public partial class AvailibilityPage : Page
     {
-        public AvailibilityPage()
+        public List<Task> taskList;
+        private UserPage parentPage;
+
+        public AvailibilityPage(UserPage parent)
         {
             InitializeComponent();
+            taskList = new List<Task>();    //= web.getTasks()
+            parentPage = parent;
+
+            init();
+        }
+
+        private void init()
+        {
+            for (int i = 0; i < 15; i++)    //while i don't have webmethod
+            {
+                Task task = new Task();
+                task.shortName = "a" + i.ToString();
+                taskList.Add(task);
+            }
+
+            for (int i = 0; i < taskList.Count; i++)
+            {
+                var but = new Button
+                {
+                    Content = taskList[i].shortName,
+                    Height = 25,
+                    Width = 100,
+                    HorizontalAlignment = HorizontalAlignment.Left,
+                    Margin = new Thickness(5),
+                    Uid = i.ToString(),
+                };
+                but.Click += taskClick;
+                taskView.Children.Add(but);
+            }
+        }
+
+        private void taskClick(object sender, RoutedEventArgs e)
+        {
+            var but = sender as Button;
+            parentPage.ActiveFuctionality.Content = new TaskPage(taskList[Int32.Parse(but.Uid)]);
         }
     }
 }

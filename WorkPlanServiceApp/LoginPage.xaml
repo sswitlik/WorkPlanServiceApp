@@ -8,7 +8,7 @@
       d:DesignHeight="350" d:DesignWidth="550"
       Title="LoginPage">
 
-    <Grid>
+    <Grid Height="350" VerticalAlignment="Bottom" MinWidth="550" MinHeight="350">
         <StackPanel x:Name="stack"
                     HorizontalAlignment="Center" 
                     VerticalAlignment="Center">

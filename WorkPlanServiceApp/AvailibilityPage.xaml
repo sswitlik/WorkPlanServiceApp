@@ -8,7 +8,18 @@
       d:DesignHeight="350" d:DesignWidth="400"
       Title="AvailibilityPage">
 
-    <Grid>
-        
-    </Grid>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="200"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel x:Name="taskView"
+                    Grid.Column="0"
+                    HorizontalAlignment="Left"
+                    Margin="10">
+            </StackPanel>
+
+        </Grid>
+    </ScrollViewer>
 </Page>

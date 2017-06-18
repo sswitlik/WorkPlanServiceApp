@@ -12,6 +12,26 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="getUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="tns:User" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="User">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="lastName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="getUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="getUserResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="HelloWorldSoapIn">
@@ -20,10 +40,20 @@
   <wsdl:message name="HelloWorldSoapOut">
     <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
   </wsdl:message>
+  <wsdl:message name="getUserSoapIn">
+    <wsdl:part name="parameters" element="tns:getUser" />
+  </wsdl:message>
+  <wsdl:message name="getUserSoapOut">
+    <wsdl:part name="parameters" element="tns:getUserResponse" />
+  </wsdl:message>
   <wsdl:portType name="DyspozytorServiceSoap">
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
       <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getUser">
+      <wsdl:input message="tns:getUserSoapIn" />
+      <wsdl:output message="tns:getUserSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="DyspozytorServiceSoap" type="tns:DyspozytorServiceSoap">
@@ -37,11 +67,29 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="getUser">
+      <soap:operation soapAction="http://tempuri.org/getUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="DyspozytorServiceSoap12" type="tns:DyspozytorServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="HelloWorld">
       <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUser">
+      <soap12:operation soapAction="http://tempuri.org/getUser" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

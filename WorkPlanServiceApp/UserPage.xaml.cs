@@ -28,7 +28,8 @@ namespace WorkPlanServiceApp
 
         private void AvailDefButton_Click(object sender, RoutedEventArgs e)
         {
-            ActiveFuctionality.Content = new AvailibilityPage();
+            ActiveFuctionality.Content = new AvailibilityPage(this);
+            
         }
     }
 }
