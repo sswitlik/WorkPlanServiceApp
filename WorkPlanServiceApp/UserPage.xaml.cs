@@ -22,13 +22,18 @@ namespace WorkPlanServiceApp
     {
         public MainWindow appMenu;
         public AvailibilityPage availPage;
-        public UserPage(MainWindow menu)
+        public User loggedUser;
+        public UserPage(MainWindow menu, User usr)
         {
             InitializeComponent();
             appMenu = menu;
             availPage = new AvailibilityPage(this);
+            loggedUser = usr;
 
             ActiveFuctionality.Content = new HelloPage();
+
+
+            usernameLabel.Content = loggedUser.username;
         }
 
         private void AvailDefButton_Click(object sender, RoutedEventArgs e)

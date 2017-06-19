@@ -65,10 +65,115 @@ namespace WorkPlanServiceApp
 
         private void logIn_Click(object sender, RoutedEventArgs e)
         {
-            appMenu.AppNavigation.Content = new UserPage(appMenu);
+            SQLiteConnection m_dbConnection = new SQLiteConnection("Data Source=Placek.sqlite;Version=3;");
+            m_dbConnection.Open();
 
+            var enteredUsername = username.Text;
+            var enteredPassword = password.Password;
 
+            User loggedUser = new User();
 
+            string sql = "select * from pracownik WHERE username = '" + enteredUsername + "' and password = '" + enteredPassword + "'";
+            SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
+            SQLiteDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                loggedUser = new User { id = Int32.Parse(reader["id"].ToString()), username = reader["username"].ToString(), authorization = Int32.Parse(reader["iduprawnienia"].ToString()) };
+                // taskList.Add(new Task { id = Int32.Parse(reader["id"].ToString()), shiftSum = 0, shortName = reader["skrotnazwy"].ToString() });
+            }
+
+            if (loggedUser.authorization == 1)
+                appMenu.AppNavigation.Content = new UserPage(appMenu, loggedUser);
+            else
+                appMenu.AppNavigation.Content = new ManagerPage(appMenu, loggedUser);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            SQLiteConnection.CreateFile("Placek.sqlite");
+
+            SQLiteConnection m_dbConnection = new SQLiteConnection("Data Source=Placek.sqlite;Version=3;");
+            m_dbConnection.Open();
+
+            string sql = "CREATE TABLE pracownik (id int, imie varchar(20), username varchar(20), password varchar(20), iduprawnienia int)";
+            SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
+            command.ExecuteNonQuery();
+
+            sql = "insert into Pracownik (id, imie, username, password, iduprawnienia) values (1, 'Andrzej', 'a123', 'a123', 1)";
+            command = new SQLiteCommand(sql, m_dbConnection);
+            command.ExecuteNonQuery();
+
+            sql = "insert into pracownik (id, imie, username, password, iduprawnienia) values (2, 'Bartosz', 'b123', 'b123', 1)";
+            command = new SQLiteCommand(sql, m_dbConnection);
+            command.ExecuteNonQuery();
+
+            sql = "insert into pracownik (id, imie, username, password, iduprawnienia) values (3, 'Cezary', 'c123', 'c123', 2)";
+            command = new SQLiteCommand(sql, m_dbConnection);
+            command.ExecuteNonQuery();
+
+            //--
+
+            sql = "CREATE TABLE zadanie (id int, nazwa varchar(20), skrotnazwy varchar(20), idListyzmian varchar(20))";
+            command = new SQLiteCommand(sql, m_dbConnection);
+            command.ExecuteNonQuery();
+
+            sql = "insert into zadanie (id, nazwa, skrotnazwy, idListyzmian) values (1, 'Sprzatanie w Magazynie', 'Sprzatanie', 1)";
+            command = new SQLiteCommand(sql, m_dbConnection);
+            command.ExecuteNonQuery();
+
+            sql = "insert into zadanie (id, nazwa, skrotnazwy, idListyzmian) values (2, 'Gotowanie w Kuchni', 'Gotownie', 2)";
+            command = new SQLiteCommand(sql, m_dbConnection);
+            command.ExecuteNonQuery();
+
+            //--
+
+            sql = "CREATE TABLE zmiana (id int, dzien varchar(20), godzStart varchar(20), godzStop varchar(20), idListyZmian int)";
+            command = new SQLiteCommand(sql, m_dbConnection);
+            command.ExecuteNonQuery();
+
+            sql = "insert into zmiana (id, dzien, godzStart, godzStop, idListyZmian) values (1, '14.12.1996', '08:00', '16:00', 1)";
+            command = new SQLiteCommand(sql, m_dbConnection);
+            command.ExecuteNonQuery();
+
+            sql = "insert into zmiana (id, dzien, godzStart, godzStop, idListyZmian) values (2, '14.12.1996', '16:00', '24:00', 1)";
+            command = new SQLiteCommand(sql, m_dbConnection);
+            command.ExecuteNonQuery();
+
+            sql = "insert into zmiana (id, dzien, godzStart, godzStop, idListyZmian) values (3, '15.12.1996', '08:00', '16:00', 1)";
+            command = new SQLiteCommand(sql, m_dbConnection);
+            command.ExecuteNonQuery();
+
+            sql = "insert into zmiana (id, dzien, godzStart, godzStop, idListyZmian) values (4, '02.06.1997', '08:00', '14:00', 2)";
+            command = new SQLiteCommand(sql, m_dbConnection);
+            command.ExecuteNonQuery();
+
+            sql = "insert into zmiana (id, dzien, godzStart, godzStop, idListyZmian) values (5, '02.06.1997', '08:00', '14:00', 2)";
+            command = new SQLiteCommand(sql, m_dbConnection);
+            command.ExecuteNonQuery();
+
+            sql = "insert into zmiana (id, dzien, godzStart, godzStop, idListyZmian) values (6, '02.06.1997', '08:00', '14:00', 2)";
+            command = new SQLiteCommand(sql, m_dbConnection);
+            command.ExecuteNonQuery();
+
+            //--
+
+            sql = "CREATE TABLE Listazmian (id int, idZadania)";
+            command = new SQLiteCommand(sql, m_dbConnection);
+            command.ExecuteNonQuery();
+
+            sql = "insert into listazmian (id, idZadania) values (1,1)";
+            command = new SQLiteCommand(sql, m_dbConnection);
+            command.ExecuteNonQuery();
+
+            sql = "insert into listazmian (id, idZadania) values (1,2)";
+            command = new SQLiteCommand(sql, m_dbConnection);
+            command.ExecuteNonQuery();
+
+            //--
+
+            sql = "CREATE TABLE przydzialzadan(id int, idPracownika int, preferencja int, idzmiany int)";
+            command = new SQLiteCommand(sql, m_dbConnection);
+            command.ExecuteNonQuery();
 
         }
     }
@@ -91,87 +196,3 @@ namespace WorkPlanServiceApp
 //username.Text = lol.HelloWorld();
 
 
-//SQLiteConnection.CreateFile("Placek.sqlite");
-
-//SQLiteConnection m_dbConnection = new SQLiteConnection("Data Source=Placek.sqlite;Version=3;");
-//m_dbConnection.Open();
-
-//string sql = "CREATE TABLE pracownik (id int, imie varchar(20), username varchar(20), password varchar(20), iduprawnienia int)";
-//SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
-//command.ExecuteNonQuery();
-
-//sql = "insert into Pracownik (id, imie, username, password, iduprawnienia) values (1, 'Andrzej', 'a123', 'a123', 1)";
-//command = new SQLiteCommand(sql, m_dbConnection);
-//command.ExecuteNonQuery();
-
-//sql = "insert into pracownik (id, imie, username, password, iduprawnienia) values (2, 'Bartosz', 'b123', 'b123', 1)";
-//command = new SQLiteCommand(sql, m_dbConnection);
-//command.ExecuteNonQuery();
-
-//sql = "insert into pracownik (id, imie, username, password, iduprawnienia) values (3, 'Cezary', 'c123', 'c123', 2)";
-//command = new SQLiteCommand(sql, m_dbConnection);
-//command.ExecuteNonQuery();
-
-////--
-
-//sql = "CREATE TABLE zadanie (id int, nazwa varchar(20), skrotnazwy varchar(20), idListyzmian varchar(20))";
-//command = new SQLiteCommand(sql, m_dbConnection);
-//command.ExecuteNonQuery();
-
-//sql = "insert into zadanie (id, nazwa, skrotnazwy, idListyzmian) values (1, 'Sprzatanie w Magazynie', 'Sprzatanie', 1)";
-//command = new SQLiteCommand(sql, m_dbConnection);
-//command.ExecuteNonQuery();
-
-//sql = "insert into zadanie (id, nazwa, skrotnazwy, idListyzmian) values (2, 'Gotowanie w Kuchni', 'Gotownie', 2)";
-//command = new SQLiteCommand(sql, m_dbConnection);
-//command.ExecuteNonQuery();
-
-////--
-
-//sql = "CREATE TABLE zmiana (id int, dzien varchar(20), godzStart varchar(20), godzStop varchar(20), idListyZmian int)";
-//command = new SQLiteCommand(sql, m_dbConnection);
-//command.ExecuteNonQuery();
-
-//sql = "insert into zmiana (id, dzien, godzStart, godzStop, idListyZmian) values (1, '14.12.1996', '08:00', '16:00', 1)";
-//command = new SQLiteCommand(sql, m_dbConnection);
-//command.ExecuteNonQuery();
-
-//sql = "insert into zmiana (id, dzien, godzStart, godzStop, idListyZmian) values (2, '14.12.1996', '16:00', '24:00', 1)";
-//command = new SQLiteCommand(sql, m_dbConnection);
-//command.ExecuteNonQuery();
-
-//sql = "insert into zmiana (id, dzien, godzStart, godzStop, idListyZmian) values (3, '15.12.1996', '08:00', '16:00', 1)";
-//command = new SQLiteCommand(sql, m_dbConnection);
-//command.ExecuteNonQuery();
-
-//sql = "insert into zmiana (id, dzien, godzStart, godzStop, idListyZmian) values (4, '02.06.1997', '08:00', '14:00', 2)";
-//command = new SQLiteCommand(sql, m_dbConnection);
-//command.ExecuteNonQuery();
-
-//sql = "insert into zmiana (id, dzien, godzStart, godzStop, idListyZmian) values (5, '02.06.1997', '08:00', '14:00', 2)";
-//command = new SQLiteCommand(sql, m_dbConnection);
-//command.ExecuteNonQuery();
-
-//sql = "insert into zmiana (id, dzien, godzStart, godzStop, idListyZmian) values (6, '02.06.1997', '08:00', '14:00', 2)";
-//command = new SQLiteCommand(sql, m_dbConnection);
-//command.ExecuteNonQuery();
-
-////--
-
-//sql = "CREATE TABLE Listazmian (id int, idZadania)";
-//command = new SQLiteCommand(sql, m_dbConnection);
-//command.ExecuteNonQuery();
-
-//sql = "insert into listazmian (id, idZadania) values (1,1)";
-//command = new SQLiteCommand(sql, m_dbConnection);
-//command.ExecuteNonQuery();
-
-//sql = "insert into listazmian (id, idZadania) values (1,2)";
-//command = new SQLiteCommand(sql, m_dbConnection);
-//command.ExecuteNonQuery();
-
-////--
-
-//sql = "CREATE TABLE przydzialzadan(id int, idPracownika int, preferencja int, idzmiany int)";
-//command = new SQLiteCommand(sql, m_dbConnection);
-//command.ExecuteNonQuery();

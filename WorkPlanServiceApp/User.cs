@@ -9,7 +9,7 @@ namespace WorkPlanServiceApp
     public class User
     {
         public int id { get; set; }
-        public string username { get; }
+        public string username { get; set; }
         public string password { get; set; }
         public int authorization { get; set; }
     }

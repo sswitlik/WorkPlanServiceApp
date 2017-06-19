@@ -36,6 +36,7 @@
                     Margin="10"
                     Content="Log In"
                     Click="logIn_Click"/>
+            <Button Height="5" Width="5" Click="Button_Click"/>
         </StackPanel>
     </Grid>
 </Page>

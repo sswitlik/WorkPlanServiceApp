@@ -64,9 +64,9 @@ namespace WorkPlanServiceApp
             SQLiteConnection m_dbConnection = new SQLiteConnection("Data Source=Placek.sqlite;Version=3;");
             m_dbConnection.Open();
 
-            string sql = "insert into przydzialzadan (id, idPracownika, preferencja, idzmiany) values (1,"+ " '14.12.1996', '08:00', '16:00', 1)";
-            SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
-            command.ExecuteNonQuery();
+            //string sql = "insert into przydzialzadan (id, idPracownika, preferencja, idzmiany) values (1,"+ " '14.12.1996', '08:00', '16:00', 1)";
+            //SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
+            //command.ExecuteNonQuery();
         }
     }
 }

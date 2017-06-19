@@ -22,13 +22,17 @@ namespace WorkPlanServiceApp
     {
         public MainWindow appMenu;
         public DefineTaskPage defTaskPage;
+        public User loggedUser;
 
-        public ManagerPage(MainWindow menu)
+        public ManagerPage(MainWindow menu, User usr)
         {
             InitializeComponent();
             appMenu = menu;
             defTaskPage = new DefineTaskPage(this);
 
+            loggedUser = usr;
+
+            usernameLabel.Content = loggedUser.username;
         }
 
         private void makePlanButton_Click(object sender, RoutedEventArgs e)
