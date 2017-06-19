@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data.SQLite;
 
 namespace WorkPlanServiceApp
 {
@@ -35,11 +36,17 @@ namespace WorkPlanServiceApp
 
         private void init()
         {
-            var items = new List<Task>();
-            for (int i = 0; i < 15; i++)    //while i don't have webmethod
+            SQLiteConnection m_dbConnection = new SQLiteConnection("Data Source=Placek.sqlite;Version=3;");
+            m_dbConnection.Open();
+
+            string sql = "select * from zadanie";
+            SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
+            SQLiteDataReader reader = command.ExecuteReader();
+            while (reader.Read())
             {
-                taskList.Add(new Task { shortName = "a" + i.ToString(), shiftSum = 0 });
+                taskList.Add(new Task { id = Int32.Parse( reader["id"].ToString() ), shiftSum = 0, shortName = reader["skrotnazwy"].ToString() });
             }
+            
             visualTaskList.ItemsSource = taskList;
 
             //for (int i = 0; i < taskList.Count; i++)
