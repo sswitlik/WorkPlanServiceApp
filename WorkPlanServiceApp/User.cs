@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace WorkPlanServiceApp
 {
-    public class Task
+    public class User
     {
         public int id { get; set; }
-        public string shortName { get; set; }
-        public int shiftSum { get; set; }
-        public List<Shift> shiftList;
-
+        public string username { get; }
+        public string password { get; set; }
+        public int authorization { get; set; }
     }
 }

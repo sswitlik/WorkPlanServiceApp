@@ -20,12 +20,21 @@ namespace WorkPlanServiceApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        public LoginPage loginPage;
+
         public MainWindow()
         {
             InitializeComponent();
-            AppNavigation.Content = new LoginPage();
+            loginPage = new LoginPage(this);
+            AppNavigation.Content = loginPage;
         }
 
+        public void loginPageClear()
+        {
+            loginPage.username.Text = "Username";
+            loginPage.username.Foreground = Brushes.Gray;
+            loginPage.password.Password = String.Empty;
+        }
        
     }
 }

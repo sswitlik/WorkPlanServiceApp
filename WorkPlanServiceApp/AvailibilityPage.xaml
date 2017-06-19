@@ -8,18 +8,47 @@
       d:DesignHeight="350" d:DesignWidth="400"
       Title="AvailibilityPage">
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto">
+    <Grid>
         <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="150"/>
-                <ColumnDefinition Width="200"/>
-            </Grid.ColumnDefinitions>
-            <StackPanel x:Name="taskView"
-                    Grid.Column="0"
-                    HorizontalAlignment="Left"
-                    Margin="10">
-            </StackPanel>
-
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="115"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0"
+                           Text="Zadanie:"
+                           Margin="20,0,0,0"/>
+                <TextBlock Grid.Column="1"
+                           Text="Wybrano zmian:"/>
+            </Grid>
+            <ScrollViewer Grid.Row="1" 
+                          VerticalScrollBarVisibility="Auto"
+                          Margin="5"
+                          HorizontalAlignment="Stretch">
+                <ItemsControl Name="visualTaskList" HorizontalAlignment="Left">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="80"/>
+                                </Grid.ColumnDefinitions>
+                                <Button Grid.Column="0" 
+                                    Width="260" 
+                                    Content="{Binding shortName}"
+                                        Click="TaskClick"/>
+                                <TextBlock Grid.Column="1" 
+                                       Width="20" 
+                                       Text="{Binding shiftSum}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
         </Grid>
-    </ScrollViewer>
+    </Grid>
 </Page>

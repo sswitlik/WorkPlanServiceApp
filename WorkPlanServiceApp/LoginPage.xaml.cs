@@ -21,12 +21,14 @@ namespace WorkPlanServiceApp
     /// </summary>
     public partial class LoginPage : Page
     {
-        public LoginPage()
+        public MainWindow appMenu;
+        private bool usernameClicked = false;
+
+        public LoginPage(MainWindow menu)
         {
             InitializeComponent();
+            appMenu = menu;
         }
-
-        private bool usernameClicked = false;
 
         private void username_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -62,7 +64,7 @@ namespace WorkPlanServiceApp
 
         private void logIn_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new UserPage());
+            appMenu.AppNavigation.Content = new ManagerPage(appMenu);
         }
     }
 }

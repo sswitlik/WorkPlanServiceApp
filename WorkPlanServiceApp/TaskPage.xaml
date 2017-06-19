@@ -11,8 +11,8 @@
     <Grid Width="400" >
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
-            <RowDefinition Height="240"/>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="240*"/>
+            <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Margin="5,5,20,5">
             <Grid.ColumnDefinitions>
@@ -30,29 +30,35 @@
                        Text="Poziom Preferencji"
                        TextAlignment="Center"/>
         </Grid>
-        <ScrollViewer Grid.Row="1" Height="240" Width="370" VerticalAlignment="Top">
-            <ItemsControl Name="visualTaskList">
+        <ScrollViewer Grid.Row="1" Width="370" VerticalAlignment="Top" Margin="0,0,0,10">
+            <ItemsControl Name="visualShiftList">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Grid Margin="2">
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="2*"/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Grid.Column="0" 
-                                       Text="{Binding Date}"
+                                       Text="{Binding dayDate}"
                                        Width="80"
                                        TextAlignment="Center"/>
                             <TextBlock Grid.Column="1" 
-                                       Text="{Binding Hour}"
-                                       Width="90"
+                                       Text="{Binding hourStart}"
+                                       Width="45"
                                        TextAlignment="Center"/>
-                            <ComboBox Grid.Column="2" 
-                                      Width="70">
-                                <ComboBoxItem>Wysoki</ComboBoxItem>
-                                <ComboBoxItem>Średni</ComboBoxItem>
+                            <TextBlock Grid.Column="2" 
+                                       Text="{Binding hourStop}"
+                                       Width="45"
+                                       TextAlignment="Center"/>
+                            <ComboBox Grid.Column="3" 
+                                      Width="70"
+                                      SelectionChanged="preference_SelectionChanged">
                                 <ComboBoxItem>Niski</ComboBoxItem>
+                                <ComboBoxItem>Średni</ComboBoxItem>
+                                <ComboBoxItem>Wysoki</ComboBoxItem>
                             </ComboBox>
                         </Grid>
                     </DataTemplate>
@@ -60,11 +66,12 @@
             </ItemsControl>
         </ScrollViewer>
         <Button Grid.Row="2"
-                Height="20"
+                Height="25"
                 Width="80"
-                Margin="10,10,0,0"
+                Margin="10,0,0,15"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Left"
-                Content="Wyślij"/>
+                Content="Wyślij"
+                Click="sendShiftsButtonClick"/>
     </Grid>
 </Page>

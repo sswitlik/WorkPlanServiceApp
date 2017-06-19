@@ -21,37 +21,35 @@ namespace WorkPlanServiceApp
     public partial class TaskPage : Page
     {
         public Task usingTask;
+        public List<Shift> shiftList;
         public TaskPage(Task clickedTask)
         {
             InitializeComponent();
             usingTask = clickedTask;
+            shiftList = new List<Shift>();  //webmethod needed
 
             init();
         }
 
         private void init()
         {
-            var items = new List<ShiftElement>();
-            items.Add(new ShiftElement { Date = "14.12.1996", Hour = "nwm" });
-            items.Add(new ShiftElement { Date = "02.06.1997", Hour = "20:45" });
-            items.Add(new ShiftElement { Date = "02.06.1997", Hour = "20:45" });
-            items.Add(new ShiftElement { Date = "02.06.1997", Hour = "20:45" });
-            items.Add(new ShiftElement { Date = "02.06.1997", Hour = "20:45" });
-            items.Add(new ShiftElement { Date = "02.06.1997", Hour = "20:45" });
-            items.Add(new ShiftElement { Date = "02.06.1997", Hour = "20:45" });
-            items.Add(new ShiftElement { Date = "02.06.1997", Hour = "20:45" });
-            items.Add(new ShiftElement { Date = "02.06.1997", Hour = "20:45" });
-            items.Add(new ShiftElement { Date = "02.06.1997", Hour = "20:45" });
-            items.Add(new ShiftElement { Date = "02.06.1997", Hour = "20:45" });
-            items.Add(new ShiftElement { Date = "02.06.1997", Hour = "20:45" });
-            items.Add(new ShiftElement { Date = "02.06.1997", Hour = "20:45" });
-            visualTaskList.ItemsSource = items;
+            shiftList.Add(new Shift { dayDate = "14.12.1996", hourStart = "8:00", hourStop = "16:00"});
+            shiftList.Add(new Shift { dayDate = "02.06.1997", hourStart = "20:45", hourStop = "20:50" });
+            shiftList.Add(new Shift { dayDate = "4.12.2016", hourStart = "8:00", hourStop = "16:00" });
+            visualShiftList.ItemsSource = shiftList;
         }
-    }
+        
+        private void preference_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            var comboBox = sender as ComboBox;
+            var checkedShift = comboBox.DataContext as Shift;
 
-    public class ShiftElement
-    {
-        public string Date { get; set; }
-        public string Hour { get; set; }
+            checkedShift.preference = comboBox.SelectedIndex;
+        }
+
+        private void sendShiftsButtonClick(object sender, RoutedEventArgs e)
+        {
+            //send 
+        }
     }
 }

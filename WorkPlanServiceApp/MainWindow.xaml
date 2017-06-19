@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WorkPlanServiceApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="550" MinWidth="550" MinHeight="350"
+        Title="MainWindow" Height="389" Width="550" MinWidth="550" MinHeight="389"
         >
     <!--FocusManager.FocusedElement="{Binding ElementName=username}"-->
     <Grid>
-        <Frame x:Name="AppNavigation" NavigationUIVisibility="Hidden" MinWidth="550" MinHeight="350" Width="550" Height="350"/>
+        <Frame x:Name="AppNavigation" VerticalAlignment="Top" NavigationUIVisibility="Hidden" MinWidth="550" MinHeight="350" Width="550" Margin="0,0,-8,-21"/>
     </Grid>
 </Window>

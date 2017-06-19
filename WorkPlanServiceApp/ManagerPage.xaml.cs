@@ -16,31 +16,36 @@ using System.Windows.Shapes;
 namespace WorkPlanServiceApp
 {
     /// <summary>
-    /// Logika interakcji dla klasy UserPage.xaml
+    /// Logika interakcji dla klasy ManagerPage.xaml
     /// </summary>
-    public partial class UserPage : Page
+    public partial class ManagerPage : Page
     {
         public MainWindow appMenu;
-        public AvailibilityPage availPage;
-        public UserPage(MainWindow menu)
+        public DefineTaskPage defTaskPage;
+
+        public ManagerPage(MainWindow menu)
         {
             InitializeComponent();
             appMenu = menu;
-            availPage = new AvailibilityPage(this);
+            defTaskPage = new DefineTaskPage(this);
 
-            ActiveFuctionality.Content = new HelloPage();
         }
 
-        private void AvailDefButton_Click(object sender, RoutedEventArgs e)
+        private void makePlanButton_Click(object sender, RoutedEventArgs e)
         {
-            ActiveFuctionality.Content = availPage;
-            
+
+        }
+
+        private void TaskDefButton_Click(object sender, RoutedEventArgs e)
+        {
+            ActiveFuctionality.Content = defTaskPage;
         }
 
         private void LogOutButton_Click(object sender, RoutedEventArgs e)
         {
             appMenu.loginPageClear();
-            appMenu.AppNavigation.Content = appMenu.loginPage; 
+            appMenu.AppNavigation.Content = appMenu.loginPage;
         }
+
     }
 }
